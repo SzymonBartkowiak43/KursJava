@@ -10,8 +10,8 @@ public class Main implements Runnable{
         }
     }
 
-
-    private synchronized void makeWithdrawal(int amt) {
+    private void makeWithdrawal(int amt) {
+        synchronized(this) {
         if (acct.getBalance() >= amt) {
             System.out.println(Thread.currentThread().getName()
                     + " is going to withdraw");
@@ -23,6 +23,7 @@ public class Main implements Runnable{
             System.out.println("Not enough in account for "
                     + Thread.currentThread().getName()
                     + " to withdraw " + acct.getBalance());
+        }
         }
     }
 
